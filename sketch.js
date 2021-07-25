@@ -1,0 +1,114 @@
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Constraint = Matter.Constraint;
+
+var engine, world;
+var canvas;
+var player, playerBase;
+var computer, computerBase;
+var playerArcher;
+var computerArrow,playerArrow;
+
+
+function setup() {
+  canvas = createCanvas(1275, 605);
+
+  engine = Engine.create();
+  world = engine.world;
+
+  playerBase = new PlayerBase(300, random(450, height - 300), 180, 150);
+  player = new Player(285, playerBase.body.position.y - 153, 50, 180);
+  playerArcher = new PlayerArcher(340,playerBase.body.position.y-180,120,120);
+ 
+  //Create Player Archer Object
+
+  computerBase = new ComputerBase(
+    width - 300,
+    random(450, height - 300),
+    180,
+    150
+  );
+  computer = new Computer(
+    width - 280,
+    computerBase.body.position.y - 153,
+    50,
+    180
+  );
+  computerArcher = new ComputerArcher(
+    width - 340,
+    computerBase.body.position.y - 180,
+    120,
+    120
+  );
+  computerArrow = new ComputerArrow(computerArcher.body.position.x,computerArcher.body.position.y,160,10);
+  playerArrow = new PlayerArrow(playerArcher.body.position.x,playerArcher.body.position.y,160,10);
+  //Create an arrow Object
+  
+  
+}
+
+function draw() {
+  background(180);
+
+  Engine.update(engine);
+
+ 
+
+
+  // Title
+  fill("#FFFF");
+  textAlign("center");
+  textSize(40);
+  text("EPIC ARCHERY", width / 2, 100);
+
+ 
+  playerBase.display();
+  player.display();
+  
+
+  computerBase.display();
+  computer.display();
+  
+  playerArcher.display();
+  computerArcher.display()
+
+  computerArrow.display();
+  playerArrow.display();
+
+  //Display arrow();
+  
+  //if Space (32) key is pressed call shoot function of playerArrow
+ if(keyCode === 32){
+    //Call shoot() function and pass angle of playerArcher
+playerArrow.shoot(playerArcher.body.angle);
+
+  }
+
+  if(keyCode ===UP_ARROW && computerArcher.body.angle < 1.77){
+    computerArcher.body.angleValue = 0.1;
+  }else{
+    computerArcher.body.angleValue = -0.1;
+  }
+
+  if(keyCode === DOWN_ARROW && computerArcher.body.angle > 1.47){
+    computerArcher.body.angleValue = -0.1;
+  }else{
+    computerArcher.body.angleValue = 0.1;
+  }
+}
+
+function keyPressed(){
+  if(keyCode ===UP_ARROW && computerArcher.body.angle < 1.77){
+    angleValue = 0.1;
+  }else{
+    angleValue = -0.1;
+  }
+
+  if(keyCode===DOWN_ARROW  && computerArcher.body.angle > 1.47){
+    angleValue = -0.1;
+  }else{
+    angleValue = 0.1;
+  }
+}
+
