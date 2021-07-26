@@ -21,6 +21,17 @@ class PlayerArcher {
 
       var pos = this.body.position;
       var angle = this.body.angle;
+         
+         if (keyIsDown(DOWN_ARROW) && angle < -1.2) {
+      angle += 1.01; 
+      Matter.Body.setAngle(this.body, angle);
+     } 
+         
+         if (keyIsDown(UP_ARROW) && angle > -1.9) {
+      angle -= 1.01;
+      Matter.Body.setAngle(this.body, angle);
+      }
+
       push();
       translate(pos.x, pos.y);
       Matter.Body.setAngle(this.body,-PI/2); 
