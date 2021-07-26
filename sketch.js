@@ -84,31 +84,6 @@ function draw() {
 playerArrow.shoot(playerArcher.body.angle);
 
   }
-
-  if(keyCode ===UP_ARROW && computerArcher.body.angle < 1.77){
-    computerArcher.body.angleValue = 0.1;
-  }else{
-    computerArcher.body.angleValue = -0.1;
-  }
-
-  if(keyCode === DOWN_ARROW && computerArcher.body.angle > 1.47){
-    computerArcher.body.angleValue = -0.1;
-  }else{
-    computerArcher.body.angleValue = 0.1;
-  }
 }
-
-function keyPressed(){
-  if(keyCode ===UP_ARROW && computerArcher.body.angle < 1.77){
-    angleValue = 0.1;
-  }else{
-    angleValue = -0.1;
-  }
-
-  if(keyCode===DOWN_ARROW  && computerArcher.body.angle > 1.47){
-    angleValue = -0.1;
-  }else{
-    angleValue = 0.1;
-  }
-}
+ 
 
